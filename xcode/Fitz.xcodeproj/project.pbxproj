@@ -1,0 +1,340 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EDBBFD81165BCCFD0033FFC5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFD7F165BCCFD0033FFC5 /* Credits.rtf */; };
+		EDBBFD96165BCF4A0033FFC5 /* FitzApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFD94165BCF4A0033FFC5 /* FitzApp.cpp */; };
+		EDBBFDBE165BDA100033FFC5 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9F165BD2CA0033FFC5 /* QTKit.framework */; };
+		EDBBFDC0165BDA180033FFC5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFDBF165BDA180033FFC5 /* Cocoa.framework */; };
+		EDBBFDC1165BDA1E0033FFC5 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9E165BD2CA0033FFC5 /* OpenGL.framework */; };
+		EDBBFDC2165BDA250033FFC5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD99165BD2CA0033FFC5 /* Accelerate.framework */; };
+		EDBBFDC3165BDA2C0033FFC5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9A165BD2CA0033FFC5 /* AudioToolbox.framework */; };
+		EDBBFDC4165BDA340033FFC5 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9B165BD2CA0033FFC5 /* AudioUnit.framework */; };
+		EDBBFDC5165BDA3B0033FFC5 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9C165BD2CA0033FFC5 /* CoreAudio.framework */; };
+		EDBBFDC6165BDA680033FFC5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9D165BD2CA0033FFC5 /* CoreVideo.framework */; };
+		EDBBFDC7165BDAB00033FFC5 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFDA0165BD2CA0033FFC5 /* QuickTime.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EDBBFD6C165BCCFD0033FFC5 /* Fitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDBBFD73165BCCFD0033FFC5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		EDBBFD74165BCCFD0033FFC5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		EDBBFD75165BCCFD0033FFC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EDBBFD78165BCCFD0033FFC5 /* Fitz-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fitz-Info.plist"; sourceTree = "<group>"; };
+		EDBBFD7E165BCCFD0033FFC5 /* Fitz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fitz-Prefix.pch"; sourceTree = "<group>"; };
+		EDBBFD80165BCCFD0033FFC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		EDBBFD94165BCF4A0033FFC5 /* FitzApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FitzApp.cpp; path = ../../src/FitzApp.cpp; sourceTree = "<group>"; };
+		EDBBFD99165BD2CA0033FFC5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		EDBBFD9A165BD2CA0033FFC5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EDBBFD9B165BD2CA0033FFC5 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		EDBBFD9C165BD2CA0033FFC5 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		EDBBFD9D165BD2CA0033FFC5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		EDBBFD9E165BD2CA0033FFC5 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		EDBBFD9F165BD2CA0033FFC5 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		EDBBFDA0165BD2CA0033FFC5 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		EDBBFDBF165BDA180033FFC5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EDBBFD69165BCCFD0033FFC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDBBFDC7165BDAB00033FFC5 /* QuickTime.framework in Frameworks */,
+				EDBBFDC6165BDA680033FFC5 /* CoreVideo.framework in Frameworks */,
+				EDBBFDC5165BDA3B0033FFC5 /* CoreAudio.framework in Frameworks */,
+				EDBBFDC4165BDA340033FFC5 /* AudioUnit.framework in Frameworks */,
+				EDBBFDC3165BDA2C0033FFC5 /* AudioToolbox.framework in Frameworks */,
+				EDBBFDC2165BDA250033FFC5 /* Accelerate.framework in Frameworks */,
+				EDBBFDC1165BDA1E0033FFC5 /* OpenGL.framework in Frameworks */,
+				EDBBFDC0165BDA180033FFC5 /* Cocoa.framework in Frameworks */,
+				EDBBFDBE165BDA100033FFC5 /* QTKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EDBBFD61165BCCFD0033FFC5 = {
+			isa = PBXGroup;
+			children = (
+				EDBBFDBF165BDA180033FFC5 /* Cocoa.framework */,
+				EDBBFD99165BD2CA0033FFC5 /* Accelerate.framework */,
+				EDBBFD9A165BD2CA0033FFC5 /* AudioToolbox.framework */,
+				EDBBFD9B165BD2CA0033FFC5 /* AudioUnit.framework */,
+				EDBBFD9C165BD2CA0033FFC5 /* CoreAudio.framework */,
+				EDBBFD9D165BD2CA0033FFC5 /* CoreVideo.framework */,
+				EDBBFD9E165BD2CA0033FFC5 /* OpenGL.framework */,
+				EDBBFD9F165BD2CA0033FFC5 /* QTKit.framework */,
+				EDBBFDA0165BD2CA0033FFC5 /* QuickTime.framework */,
+				EDBBFD76165BCCFD0033FFC5 /* Fitz */,
+				EDBBFD6F165BCCFD0033FFC5 /* Frameworks */,
+				EDBBFD6D165BCCFD0033FFC5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EDBBFD6D165BCCFD0033FFC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDBBFD6C165BCCFD0033FFC5 /* Fitz.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EDBBFD6F165BCCFD0033FFC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDBBFD72165BCCFD0033FFC5 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EDBBFD72165BCCFD0033FFC5 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDBBFD73165BCCFD0033FFC5 /* AppKit.framework */,
+				EDBBFD74165BCCFD0033FFC5 /* CoreData.framework */,
+				EDBBFD75165BCCFD0033FFC5 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		EDBBFD76165BCCFD0033FFC5 /* Fitz */ = {
+			isa = PBXGroup;
+			children = (
+				EDBBFD98165BD01D0033FFC5 /* Headers */,
+				EDBBFD93165BCEE30033FFC5 /* Resources */,
+				EDBBFD92165BCEDD0033FFC5 /* Classes */,
+				EDBBFD77165BCCFD0033FFC5 /* Supporting Files */,
+			);
+			path = Fitz;
+			sourceTree = "<group>";
+		};
+		EDBBFD77165BCCFD0033FFC5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EDBBFD78165BCCFD0033FFC5 /* Fitz-Info.plist */,
+				EDBBFD7E165BCCFD0033FFC5 /* Fitz-Prefix.pch */,
+				EDBBFD7F165BCCFD0033FFC5 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EDBBFD92165BCEDD0033FFC5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EDBBFD94165BCF4A0033FFC5 /* FitzApp.cpp */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		EDBBFD93165BCEE30033FFC5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		EDBBFD98165BD01D0033FFC5 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EDBBFD6B165BCCFD0033FFC5 /* Fitz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDBBFD8A165BCCFE0033FFC5 /* Build configuration list for PBXNativeTarget "Fitz" */;
+			buildPhases = (
+				EDBBFD68165BCCFD0033FFC5 /* Sources */,
+				EDBBFD69165BCCFD0033FFC5 /* Frameworks */,
+				EDBBFD6A165BCCFD0033FFC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fitz;
+			productName = Fitz;
+			productReference = EDBBFD6C165BCCFD0033FFC5 /* Fitz.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EDBBFD63165BCCFD0033FFC5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Mp;
+			};
+			buildConfigurationList = EDBBFD66165BCCFD0033FFC5 /* Build configuration list for PBXProject "Fitz" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EDBBFD61165BCCFD0033FFC5;
+			productRefGroup = EDBBFD6D165BCCFD0033FFC5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDBBFD6B165BCCFD0033FFC5 /* Fitz */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EDBBFD6A165BCCFD0033FFC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDBBFD81165BCCFD0033FFC5 /* Credits.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EDBBFD68165BCCFD0033FFC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDBBFD96165BCF4A0033FFC5 /* FitzApp.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EDBBFD7F165BCCFD0033FFC5 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDBBFD80165BCCFD0033FFC5 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EDBBFD88165BCCFE0033FFC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CINDER_PATH = "$(HOME)/Library/cinder_afb";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(CINDER_PATH)/boost";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(CINDER_PATH)/include";
+			};
+			name = Debug;
+		};
+		EDBBFD89165BCCFE0033FFC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CINDER_PATH = "$(HOME)/Library/cinder_afb";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(CINDER_PATH)/boost";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(CINDER_PATH)/include";
+			};
+			name = Release;
+		};
+		EDBBFD8B165BCCFE0033FFC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Fitz/Fitz-Prefix.pch";
+				INFOPLIST_FILE = "Fitz/Fitz-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(CINDER_PATH)/lib/libcinder_d.a";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EDBBFD8C165BCCFE0033FFC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Fitz/Fitz-Prefix.pch";
+				INFOPLIST_FILE = "Fitz/Fitz-Info.plist";
+				OTHER_LDFLAGS = "$(CINDER_PATH)/lib/libcinder.a";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EDBBFD66165BCCFD0033FFC5 /* Build configuration list for PBXProject "Fitz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDBBFD88165BCCFE0033FFC5 /* Debug */,
+				EDBBFD89165BCCFE0033FFC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDBBFD8A165BCCFE0033FFC5 /* Build configuration list for PBXNativeTarget "Fitz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDBBFD8B165BCCFE0033FFC5 /* Debug */,
+				EDBBFD8C165BCCFE0033FFC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EDBBFD63165BCCFD0033FFC5 /* Project object */;
+}

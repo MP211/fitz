@@ -11,3 +11,20 @@
 *.lai
 *.la
 *.a
+
+# XCode 4+
+xcuserdata/
+*.build/
+build/
+DerivedData/
+*~.nib
+!xcschemes
+*.moved-aside
+
+# OSX
+.svn
+.DS_Store
+*.swp
+*.lock
+profile
+

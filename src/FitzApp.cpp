@@ -6,10 +6,6 @@
 //  Copyright (c) 2012 Mp. All rights reserved.
 //
 
-// TODO
-// - create DrawItemManager to manage all draw items and common values like fonts and movement
-
-
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
 
@@ -33,7 +29,7 @@ private:
 
 void FitzApp::prepareSettings( Settings* settings )
 {
-    settings->setWindowSize(1024, 1024);
+    settings->setWindowSize(1024, 768);
     //settings->setFullScreen(true);
     settings->setResizable(false);
 };
@@ -59,8 +55,8 @@ void FitzApp::update()
 
 void FitzApp::draw()
 {
-    gl::setMatricesWindow(getWindowSize(), true);
-    gl::clear(Color(0,0,0));
+    gl::setMatricesWindow( getWindowSize(), true );
+    gl::clear( Color(0,0,0) );
     
     mDrawItemManager.draw();
 };

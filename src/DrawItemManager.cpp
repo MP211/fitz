@@ -9,6 +9,7 @@
 #include "DrawItemManager.h"
 
 #include "cinder/app/AppBasic.h"
+#include "cinder/gl/gl.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -48,6 +49,10 @@ void DrawItemManager::update()
 
 void DrawItemManager::draw()
 {
+#ifdef DEBUG
+    drawDebugPre();
+#endif
+
     list<DrawItemType>::iterator it = mDrawItems.begin();
     
     while( it != mDrawItems.end() ) {
@@ -63,7 +68,28 @@ void DrawItemManager::draw()
         
         ++it;
     }
+    
+#ifdef DEBUG
+    drawDebugPost();
+#endif
 };
+
+#ifdef DEBUG
+void DrawItemManager::drawDebugPre()
+{
+    gl::enableAlphaBlending();
+    gl::pushMatrices();
+    
+    gl::color( ColorA( 0.0f, 0.0f, 1.0f, 1.0f ));
+    gl::drawStrokedRect( mDrawBounds );
+    
+    gl::disableAlphaBlending();
+};
+
+void DrawItemManager::drawDebugPost()
+{
+};
+#endif
 
 void DrawItemManager::addTextItem( const string text )
 {

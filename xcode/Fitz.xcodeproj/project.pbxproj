@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED8FF912165DE8B10050EE6B /* PUSAB___.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED8FF911165DE8B10050EE6B /* PUSAB___.otf */; };
 		EDBBFD81165BCCFD0033FFC5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBFD7F165BCCFD0033FFC5 /* Credits.rtf */; };
 		EDBBFD96165BCF4A0033FFC5 /* FitzApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFD94165BCF4A0033FFC5 /* FitzApp.cpp */; };
 		EDBBFDBE165BDA100033FFC5 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9F165BD2CA0033FFC5 /* QTKit.framework */; };
@@ -18,9 +19,12 @@
 		EDBBFDC5165BDA3B0033FFC5 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9C165BD2CA0033FFC5 /* CoreAudio.framework */; };
 		EDBBFDC6165BDA680033FFC5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFD9D165BD2CA0033FFC5 /* CoreVideo.framework */; };
 		EDBBFDC7165BDAB00033FFC5 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBBFDA0165BD2CA0033FFC5 /* QuickTime.framework */; };
+		EDBBFDCA165C99EA0033FFC5 /* DrawItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFDC8165C99EA0033FFC5 /* DrawItem.cpp */; };
+		EDBBFDCE165D66720033FFC5 /* DrawItemManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EDBBFDCC165D66720033FFC5 /* DrawItemManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED8FF911165DE8B10050EE6B /* PUSAB___.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PUSAB___.otf"; path = "../../resources/PUSAB___.otf"; sourceTree = "<group>"; };
 		EDBBFD6C165BCCFD0033FFC5 /* Fitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBBFD73165BCCFD0033FFC5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		EDBBFD74165BCCFD0033FFC5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -38,6 +42,10 @@
 		EDBBFD9F165BD2CA0033FFC5 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		EDBBFDA0165BD2CA0033FFC5 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		EDBBFDBF165BDA180033FFC5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		EDBBFDC8165C99EA0033FFC5 /* DrawItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DrawItem.cpp; path = ../../src/DrawItem.cpp; sourceTree = "<group>"; };
+		EDBBFDCB165C9A0D0033FFC5 /* DrawItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DrawItem.h; path = ../../include/DrawItem.h; sourceTree = "<group>"; };
+		EDBBFDCC165D66720033FFC5 /* DrawItemManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DrawItemManager.cpp; path = ../../src/DrawItemManager.cpp; sourceTree = "<group>"; };
+		EDBBFDCF165D66880033FFC5 /* DrawItemManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DrawItemManager.h; path = ../../include/DrawItemManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,15 +71,6 @@
 		EDBBFD61165BCCFD0033FFC5 = {
 			isa = PBXGroup;
 			children = (
-				EDBBFDBF165BDA180033FFC5 /* Cocoa.framework */,
-				EDBBFD99165BD2CA0033FFC5 /* Accelerate.framework */,
-				EDBBFD9A165BD2CA0033FFC5 /* AudioToolbox.framework */,
-				EDBBFD9B165BD2CA0033FFC5 /* AudioUnit.framework */,
-				EDBBFD9C165BD2CA0033FFC5 /* CoreAudio.framework */,
-				EDBBFD9D165BD2CA0033FFC5 /* CoreVideo.framework */,
-				EDBBFD9E165BD2CA0033FFC5 /* OpenGL.framework */,
-				EDBBFD9F165BD2CA0033FFC5 /* QTKit.framework */,
-				EDBBFDA0165BD2CA0033FFC5 /* QuickTime.framework */,
 				EDBBFD76165BCCFD0033FFC5 /* Fitz */,
 				EDBBFD6F165BCCFD0033FFC5 /* Frameworks */,
 				EDBBFD6D165BCCFD0033FFC5 /* Products */,
@@ -89,6 +88,15 @@
 		EDBBFD6F165BCCFD0033FFC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EDBBFDBF165BDA180033FFC5 /* Cocoa.framework */,
+				EDBBFD99165BD2CA0033FFC5 /* Accelerate.framework */,
+				EDBBFD9A165BD2CA0033FFC5 /* AudioToolbox.framework */,
+				EDBBFD9B165BD2CA0033FFC5 /* AudioUnit.framework */,
+				EDBBFD9C165BD2CA0033FFC5 /* CoreAudio.framework */,
+				EDBBFD9D165BD2CA0033FFC5 /* CoreVideo.framework */,
+				EDBBFD9E165BD2CA0033FFC5 /* OpenGL.framework */,
+				EDBBFD9F165BD2CA0033FFC5 /* QTKit.framework */,
+				EDBBFDA0165BD2CA0033FFC5 /* QuickTime.framework */,
 				EDBBFD72165BCCFD0033FFC5 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -129,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				EDBBFD94165BCF4A0033FFC5 /* FitzApp.cpp */,
+				EDBBFDC8165C99EA0033FFC5 /* DrawItem.cpp */,
+				EDBBFDCC165D66720033FFC5 /* DrawItemManager.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -136,6 +146,7 @@
 		EDBBFD93165BCEE30033FFC5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED8FF911165DE8B10050EE6B /* PUSAB___.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -143,6 +154,8 @@
 		EDBBFD98165BD01D0033FFC5 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				EDBBFDCB165C9A0D0033FFC5 /* DrawItem.h */,
+				EDBBFDCF165D66880033FFC5 /* DrawItemManager.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -199,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDBBFD81165BCCFD0033FFC5 /* Credits.rtf in Resources */,
+				ED8FF912165DE8B10050EE6B /* PUSAB___.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +224,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDBBFD96165BCF4A0033FFC5 /* FitzApp.cpp in Sources */,
+				EDBBFDCA165C99EA0033FFC5 /* DrawItem.cpp in Sources */,
+				EDBBFDCE165D66720033FFC5 /* DrawItemManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

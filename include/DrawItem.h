@@ -11,6 +11,7 @@
 #ifndef Fitz_DrawItem_h
 #define Fitz_DrawItem_h
 
+#include "cinder/app/AppBasic.h"
 #include "cinder/Font.h"
 
 #include "boost/variant.hpp"
@@ -32,16 +33,23 @@ public:
     // FitzImage
     DrawItemT( const std::string resource );
     
+    // Common
     void update();
     void draw();
     
 private:
     // FitzText
-    cinder::Font    mFont;
-    std::string     mText;
-    
+    cinder::Font        mFont;
+    std::string         mText;
+
     // FitzImage
-    std::string     mResource;
+    std::string         mResource;
+    
+protected:
+    // Common
+    cinder::Vec2f       mPos;
+    cinder::ColorA      mColor;
+    
 };
 
 };

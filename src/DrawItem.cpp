@@ -8,6 +8,10 @@
 
 #include "DrawItem.h"
 
+#include "cinder/gl/gl.h"
+#include "cinder/cairo/Cairo.h"
+#include "cinder/Rand.h"
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -18,6 +22,19 @@ template<>
 DrawItemT<FitzText>::DrawItemT( const string text, const Font font ) :
     mText( text ), mFont( font )
 {
+    mColor = ColorA( 1.0f, Rand::randFloat(), 0.0f, 1.0f );
+        
+    int bW = getWindowWidth(), bH = getWindowHeight();
+    cairo::SurfaceImage surface( bW, bH, true );
+    cairo::Context ctx( surface );
+    ctx.setFont( mFont );
+    ctx.setFontSize( Rand::randInt( 76 ) );
+    ctx.setAntiAlias( cairo::ANTIALIAS_DEFAULT );
+    ctx.setSource( mColor );
+    cairo::TextExtents te = ctx.textExtents( mText );
+    ctx.moveTo( Rand::randFloat( bW ) - te.width(), Rand::randFloat( bH ) - te.height() );
+    ctx.showText( mText );
+    mTexture = gl::Texture( surface.getSurface());
 }
 
 template<>
@@ -34,6 +51,13 @@ void DrawItemT<T>::update()
 template<>
 void DrawItemT<FitzText>::draw()
 {
+    gl::enableAlphaBlending();
+    gl::pushMatrices();
+  
+    gl::color( mColor );
+    gl::draw( mTexture );
+    
+    gl::disableAlphaBlending();
 }
 
 template<>

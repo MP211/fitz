@@ -12,6 +12,7 @@
 #define Fitz_DrawItem_h
 
 #include "cinder/app/AppBasic.h"
+#include "cinder/gl/Texture.h"
 #include "cinder/Font.h"
 
 #include "boost/variant.hpp"
@@ -49,6 +50,7 @@ protected:
     // Common
     cinder::Vec2f       mPos;
     cinder::ColorA      mColor;
+    cinder::gl::Texture mTexture;
     
 };
 

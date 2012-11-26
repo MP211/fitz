@@ -44,6 +44,11 @@ void FitzApp::setup()
     for ( const string *word = &words[0]; word != &words[wordsCount]; ++word ) {
         mDrawItemManager.addTextItem( *word );
     }
+    const int       imagesCount         = 2;
+    const string    images[imagesCount] = { "test-1.jpg", "test-2.jpg" };
+    for ( const string *image = &images[0]; image != &images[imagesCount]; ++image ) {
+        mDrawItemManager.addImageItem( *image );
+    }
     
     mDrawItemManager.setup();
 };

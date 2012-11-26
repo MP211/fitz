@@ -41,9 +41,10 @@ void DrawItemManager::setup()
             p->setSize( Rand::randFloat(76)+17.0f );
             p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
         }
-//        else if ( DrawItemT<FitzImage> *p = boost::get<DrawItemT<FitzImage>>( &(*it) )) {
-//            //
-//        }
+        else if ( DrawItemT<FitzImage> *p = boost::get<DrawItemT<FitzImage>>( &(*it) )) {
+            p->setSize( 256 );
+            p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
+        }
         else {
         // Type not implemented.
         }
@@ -96,11 +97,6 @@ void DrawItemManager::addTextItem( const string text )
 void DrawItemManager::addImageItem( const string resource )
 {
     mDrawItems.push_back( DrawItemT<FitzImage>( resource ));
-};
-
-void DrawItemManager::initDrawItemPosition()
-{
-
 };
 
 #ifdef DEBUG

@@ -55,21 +55,24 @@ private:
     // FitzText
     cinder::Font                mFont;
     std::string                 mText;
-    cinder::cairo::Context      mCairoOffsContext;
-    cinder::cairo::SurfaceImage mCairoOffsSurface;
+    cinder::cairo::SurfaceImage mCairoBuffer;
+    cinder::cairo::Context      mCairoContext;
     OBB                         mOBB;
     
     // FitzImage
     std::string                 mResource;
+    cinder::ImageSourceRef      mImage;
     
     // Common
     void registerPosition( cinder::Vec2f position );
+    void initCairoBuffer();
+    void copyCairoBuffer();
 
 #ifdef DEBUG
-    void drawDebugBoundingBox();
+    void drawBoundingBox();
 #endif
 };
 
-};
+}; // fitz
 
 #endif

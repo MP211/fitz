@@ -17,32 +17,21 @@ using namespace std;
 
 namespace fitz {
 
-#ifdef DEBUG
 template<>
-void DrawItemT<FitzText>::drawDebugBoundingBox()
+void DrawItemT<FitzText>::setSize( float size )
 {
-    gl::enableAlphaBlending();
-    gl::pushMatrices();
+    mCairoContext.setFontSize( size );
     
-    gl::color( ColorA( 0.0f, 1.0f, 0.0f, 1.0f ));
-    gl::draw( mOBB.getPath() );
-    
-    gl::disableAlphaBlending();    
-};
-#endif
-
-template<>
-void DrawItemT<FitzText>::setSize( float size ) // font size
-{
-    mCairoOffsContext.setFontSize( size );
-    
-    cairo::TextExtents te = mCairoOffsContext.textExtents( mText );    
+    cairo::TextExtents te = mCairoContext.textExtents( mText );    
     mOBB = OBB( Rectf( 0.0, 0.0, te.width(), te.height() ), 0.0f );
 };
 
 template<>
-void DrawItemT<FitzImage>::setSize( float size ) // scale factor
+void DrawItemT<FitzImage>::setSize( float size )
 {
+    mCairoContext.scale( size/mCairoBuffer.getWidth(), size/mCairoBuffer.getHeight() );
+    
+    mOBB = OBB( Rectf( 0.0, 0.0, mImage->getWidth(), mImage->getHeight() ), 0.0f );
 };
 
 template<>
@@ -50,25 +39,25 @@ void DrawItemT<FitzText>::setPosition( Vec2f position )
 {
     registerPosition( position );    
     
-    mCairoOffsContext.moveTo( mCurrPos );
+    mCairoContext.moveTo( mCurrPos );
+    
+    mOBB.moveTo( mCurrPos - Vec2f( 0.0f, mOBB.getHeight()) );     
 };
 
 template<>
 void DrawItemT<FitzImage>::setPosition( Vec2f position )
 {
     registerPosition( position );
+    
+    mCairoContext.translate( position );
 };
 
 template<>
 void DrawItemT<FitzText>::draw()
 {
-    mCairoOffsContext.textPath( mText );
+    mCairoContext.textPath( mText );
     
-    cairo::SurfaceImage buf( getWindowWidth(), getWindowHeight(), true );
-    cairo::Context      ctx( buf );
-    ctx.copySurface( mCairoOffsSurface, mCairoOffsSurface.getBounds() );
-    mTexture = gl::Texture( buf.getSurface() );
-    mCairoOffsContext.fill();
+    copyCairoBuffer();
     
     gl::enableAlphaBlending();
     gl::pushMatrices();
@@ -79,13 +68,30 @@ void DrawItemT<FitzText>::draw()
     gl::disableAlphaBlending();
     
 #ifdef DEBUG
-    drawDebugBoundingBox();
+    drawBoundingBox();
 #endif
 };
 
 template<>
 void DrawItemT<FitzImage>::draw()
 {
+    cairo::SurfaceImage buf = cairo::SurfaceImage( mImage );
+    mCairoContext.setSourceSurface( buf, 0, 0 );    
+    mCairoContext.paint();
+    
+    copyCairoBuffer();
+    
+    gl::enableAlphaBlending();
+    gl::pushMatrices();
+    
+    gl::color( ColorA::gray(1.0f) );
+    gl::draw( mTexture );
+    
+    gl::disableAlphaBlending();
+    
+#ifdef DEBUG
+    drawBoundingBox();
+#endif    
 };
 
 template<>
@@ -94,18 +100,20 @@ DrawItemT<FitzText>::DrawItemT( const string text, const Font font ) :
 {
     mColor = ColorA( 1.0f, Rand::randFloat(), 0.0f, 1.0f );
     
-    mCairoOffsSurface = cairo::SurfaceImage( getWindowWidth(), getWindowHeight(), true );
-    mCairoOffsContext = cairo::Context( mCairoOffsSurface );
+    initCairoBuffer();
     
-    mCairoOffsContext.setFont( mFont );
-    mCairoOffsContext.setAntiAlias( cairo::ANTIALIAS_SUBPIXEL );
-    mCairoOffsContext.setSource( mColor );
+    mCairoContext.setFont( mFont );
+    mCairoContext.setAntiAlias( cairo::ANTIALIAS_SUBPIXEL );
+    mCairoContext.setSource( mColor );
 };
 
 template<>
 DrawItemT<FitzImage>::DrawItemT( const string resource ) :
     mResource( resource ), mCurrPos( Vec2f::zero() )
 {
+    initCairoBuffer();
+    
+    mImage = loadImage( loadAsset(mResource) );
 };
 
 template<typename T>
@@ -119,10 +127,40 @@ void DrawItemT<T>::registerPosition( Vec2f position )
     mLastPos = mCurrPos;
     mCurrPos = position;
     
-    mOBB.moveTo( mCurrPos - Vec2f( 0.0f, mOBB.getHeight()) );
-    
     mPosPath.push_back( mLastPos );
 };
+
+template<typename T>
+void DrawItemT<T>::initCairoBuffer()
+{
+    mCairoBuffer    = cairo::SurfaceImage( getWindowWidth(), getWindowHeight(), true );
+    mCairoContext   = cairo::Context( mCairoBuffer );
+};
+
+template<typename T>
+void DrawItemT<T>::copyCairoBuffer()
+{
+    cairo::SurfaceImage buf( getWindowWidth(), getWindowHeight(), true );
+    cairo::Context      ctx( buf );
+    
+    ctx.copySurface( mCairoBuffer, mCairoBuffer.getBounds() );
+    mTexture = gl::Texture( buf.getSurface() );
+    mCairoContext.fill();
+};
+
+#ifdef DEBUG
+template<typename T>
+void DrawItemT<T>::drawBoundingBox()
+{
+    gl::enableAlphaBlending();
+    gl::pushMatrices();
+    
+    gl::color( ColorA( 0.0f, 1.0f, 0.0f, 1.0f ));
+    gl::draw( mOBB.getPath() );
+    
+    gl::disableAlphaBlending();    
+};
+#endif
 
 template class DrawItemT<FitzText>;
 template class DrawItemT<FitzImage>;

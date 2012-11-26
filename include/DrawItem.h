@@ -18,6 +18,8 @@
 
 #include "boost/variant.hpp"
 
+#include "OBB.h"
+
 namespace fitz {
 
 struct FitzText;
@@ -55,7 +57,7 @@ private:
     std::string                 mText;
     cinder::cairo::Context      mCairoOffsContext;
     cinder::cairo::SurfaceImage mCairoOffsSurface;
-    cinder::cairo::TextExtents  mCairoExtents;
+    OBB                         mOBB;
     
     // FitzImage
     std::string                 mResource;

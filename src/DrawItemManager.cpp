@@ -41,9 +41,9 @@ void DrawItemManager::setup()
             p->setSize( Rand::randFloat(76)+17.0f );
             p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
         }
-        else if ( DrawItemT<FitzImage> *p = boost::get<DrawItemT<FitzImage>>( &(*it) )) {
-            //
-        }
+//        else if ( DrawItemT<FitzImage> *p = boost::get<DrawItemT<FitzImage>>( &(*it) )) {
+//            //
+//        }
         else {
         // Type not implemented.
         }

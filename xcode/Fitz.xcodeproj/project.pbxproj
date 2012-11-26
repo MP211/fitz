@@ -24,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED3B0C2016635D5B004A692E /* OBB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBB.h; path = ../../include/OBB.h; sourceTree = "<group>"; };
 		ED8FF911165DE8B10050EE6B /* PUSAB___.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PUSAB___.otf"; path = "../../resources/PUSAB___.otf"; sourceTree = "<group>"; };
 		EDBBFD6C165BCCFD0033FFC5 /* Fitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBBFD73165BCCFD0033FFC5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -154,6 +155,7 @@
 		EDBBFD98165BD01D0033FFC5 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				ED3B0C2016635D5B004A692E /* OBB.h */,
 				EDBBFDCB165C9A0D0033FFC5 /* DrawItem.h */,
 				EDBBFDCF165D66880033FFC5 /* DrawItemManager.h */,
 			);

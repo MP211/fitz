@@ -21,13 +21,11 @@ namespace fitz {
 template<>
 void DrawItemT<FitzText>::drawDebugBoundingBox()
 {
-    Rectf r( mCurrPos.x, mCurrPos.y, mCairoExtents.width(), mCairoExtents.height() );
-    
     gl::enableAlphaBlending();
     gl::pushMatrices();
     
     gl::color( ColorA( 0.0f, 1.0f, 0.0f, 1.0f ));
-    gl::drawStrokedRect(r);
+    gl::draw( mOBB.getPath() );
     
     gl::disableAlphaBlending();    
 };
@@ -37,7 +35,9 @@ template<>
 void DrawItemT<FitzText>::setSize( float size ) // font size
 {
     mCairoOffsContext.setFontSize( size );
-    mCairoExtents = mCairoOffsContext.textExtents( mText );
+    
+    cairo::TextExtents te = mCairoOffsContext.textExtents( mText );    
+    mOBB = OBB( Rectf( 0.0, 0.0, te.width(), te.height() ), 0.0f );
 };
 
 template<>
@@ -49,6 +49,7 @@ template<>
 void DrawItemT<FitzText>::setPosition( Vec2f position )
 {
     registerPosition( position );    
+    
     mCairoOffsContext.moveTo( mCurrPos );
 };
 
@@ -61,7 +62,7 @@ void DrawItemT<FitzImage>::setPosition( Vec2f position )
 template<>
 void DrawItemT<FitzText>::draw()
 {
-    mCairoOffsContext.showText( mText );
+    mCairoOffsContext.textPath( mText );
     
     cairo::SurfaceImage buf( getWindowWidth(), getWindowHeight(), true );
     cairo::Context      ctx( buf );
@@ -117,6 +118,8 @@ void DrawItemT<T>::registerPosition( Vec2f position )
 {
     mLastPos = mCurrPos;
     mCurrPos = position;
+    
+    mOBB.moveTo( mCurrPos - Vec2f( 0.0f, mOBB.getHeight()) );
     
     mPosPath.push_back( mLastPos );
 };

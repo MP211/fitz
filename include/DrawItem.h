@@ -14,6 +14,7 @@
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/Texture.h"
 #include "cinder/Font.h"
+#include "cinder/cairo/Cairo.h"
 
 #include "boost/variant.hpp"
 
@@ -37,21 +38,34 @@ public:
     // Common
     void update();
     void draw();
-    
-private:
-    // FitzText
-    cinder::Font        mFont;
-    std::string         mText;
-
-    // FitzImage
-    std::string         mResource;
+    void setPosition( cinder::Vec2f position );
+    void setSize( float size );
     
 protected:
     // Common
-    cinder::Vec2f       mPos;
-    cinder::ColorA      mColor;
-    cinder::gl::Texture mTexture;
+    cinder::Vec2f               mCurrPos;
+    cinder::Vec2f               mLastPos;
+    cinder::ColorA              mColor;
+    cinder::gl::Texture         mTexture;
+    cinder::PolyLine2f          mPosPath;
     
+private:
+    // FitzText
+    cinder::Font                mFont;
+    std::string                 mText;
+    cinder::cairo::Context      mCairoOffsContext;
+    cinder::cairo::SurfaceImage mCairoOffsSurface;
+    cinder::cairo::TextExtents  mCairoExtents;
+    
+    // FitzImage
+    std::string                 mResource;
+    
+    // Common
+    void registerPosition( cinder::Vec2f position );
+
+#ifdef DEBUG
+    void drawDebugBoundingBox();
+#endif
 };
 
 };

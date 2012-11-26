@@ -37,6 +37,8 @@ private:
     cinder::Rectf               mDrawBounds;
     std::list<DrawItemType>     mDrawItems;
     std::vector<cinder::Font>   mFonts;
+    
+    void initDrawItemPosition();
    
 #ifdef DEBUG
     void drawDebugPre();

@@ -10,6 +10,7 @@
 
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
+#include "cinder/Rand.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -31,9 +32,22 @@ DrawItemManager::DrawItemManager( cinder::Rectf drawBounds ) :
 
 void DrawItemManager::setup()
 {
+    int bW = getWindowWidth(), bH = getWindowHeight();
+
     list<DrawItemType>::iterator it = mDrawItems.begin();
     
     while( it != mDrawItems.end() ) {
+        if ( DrawItemT<FitzText> *p = boost::get<DrawItemT<FitzText>>( &(*it) )) {
+            p->setSize( Rand::randFloat(76)+17.0f );
+            p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
+        }
+        else if ( DrawItemT<FitzImage> *p = boost::get<DrawItemT<FitzImage>>( &(*it) )) {
+            //
+        }
+        else {
+        // Type not implemented.
+        }
+    
         ++it;
     }
 };
@@ -74,6 +88,21 @@ void DrawItemManager::draw()
 #endif
 };
 
+void DrawItemManager::addTextItem( const string text )
+{
+    mDrawItems.push_back( DrawItemT<FitzText>( text, mFonts[0] ));
+};
+
+void DrawItemManager::addImageItem( const string resource )
+{
+    mDrawItems.push_back( DrawItemT<FitzImage>( resource ));
+};
+
+void DrawItemManager::initDrawItemPosition()
+{
+
+};
+
 #ifdef DEBUG
 void DrawItemManager::drawDebugPre()
 {
@@ -91,14 +120,5 @@ void DrawItemManager::drawDebugPost()
 };
 #endif
 
-void DrawItemManager::addTextItem( const string text )
-{
-    mDrawItems.push_back( DrawItemT<FitzText>( text, mFonts[0] ));
-};
+}; // fitz
 
-void DrawItemManager::addImageItem( const string resource )
-{
-    mDrawItems.push_back( DrawItemT<FitzImage>( resource ));
-};
-
-};

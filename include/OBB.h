@@ -123,10 +123,15 @@ public:
     
     void scale( float dx, float dy )
     {
+        cinder::Vec2f pos = mCorners[0];
+        moveTo( cinder::Vec2f::zero());
+    
         mWidth *= dx;
         mHeight *= dy;
         
         orient( mWidth, mHeight, mAngle );
+        
+        moveTo( pos );
     };
     
     friend std::ostream& operator<<( std::ostream &o, const OBB &box )
@@ -192,7 +197,7 @@ private:
         }
         
         compute();
-    }    
+    };
     
     // Corners
     float x1, y1, x2, y2, ax1, ay1, ax2, ay2;

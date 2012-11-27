@@ -26,20 +26,19 @@ void DrawItemT<FitzText>::setSize( float size )
     
     cairo::TextExtents te2 = mCairoContext.textExtents( mText );
     
-    float dx = te2.width()/te1.width(), dy = te2.height()/te1.height();    
-    mOBB.scale( dx, dy );
+    mOBB.scale( te2.width()/te1.width(), te2.height()/te1.height() );
 };
 
 template<>
 void DrawItemT<FitzImage>::setSize( float size )
 {
     float dx = size/mImageWidth, dy = size/mImageHeight;
-
-    mCairoContext.scale( dx, dy );
     
     mImageWidth *= dx;
     mImageHeight *= dy;
-
+    
+    mCairoContext.scale( dx, dy );
+    
     mOBB.scale( dx, dy );
 };
 

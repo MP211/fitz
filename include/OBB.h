@@ -121,6 +121,14 @@ public:
         offset( position - mCorners[0] );
     };
     
+    void scale( float dx, float dy )
+    {
+        mWidth *= dx;
+        mHeight *= dy;
+        
+        orient( mWidth, mHeight, mAngle );
+    };
+    
     friend std::ostream& operator<<( std::ostream &o, const OBB &box )
     {
         return o << "(" << box.getX1() << ", " << box.getY1() << ")-(" << box.getX2() << ", " << box.getY2() << ")";

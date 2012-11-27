@@ -20,36 +20,48 @@ namespace fitz {
 template<>
 void DrawItemT<FitzText>::setSize( float size )
 {
+    cairo::TextExtents te1 = mCairoContext.textExtents( mText );
+    
     mCairoContext.setFontSize( size );
     
-    cairo::TextExtents te = mCairoContext.textExtents( mText );    
-    mOBB = OBB( Rectf( 0.0, 0.0, te.width(), te.height() ), 0.0f );
+    cairo::TextExtents te2 = mCairoContext.textExtents( mText );
+    
+    float dx = te2.width()/te1.width(), dy = te2.height()/te1.height();    
+    mOBB.scale( dx, dy );
 };
 
 template<>
 void DrawItemT<FitzImage>::setSize( float size )
 {
-    mCairoContext.scale( size/mCairoBuffer.getWidth(), size/mCairoBuffer.getHeight() );
+    float dx = size/mImageWidth, dy = size/mImageHeight;
+
+    mCairoContext.scale( dx, dy );
     
-    mOBB = OBB( Rectf( 0.0, 0.0, mImage->getWidth(), mImage->getHeight() ), 0.0f );
+    mImageWidth *= dx;
+    mImageHeight *= dy;
+
+    mOBB.scale( dx, dy );
 };
 
 template<>
 void DrawItemT<FitzText>::setPosition( Vec2f position )
 {
-    registerPosition( position );    
+    // Offset for upper-left positioning for parity with images
+    mCairoContext.moveTo( position + Vec2f( 0.0f, mOBB.getHeight()) );
     
-    mCairoContext.moveTo( mCurrPos );
+    mOBB.moveTo( position );
     
-    mOBB.moveTo( mCurrPos - Vec2f( 0.0f, mOBB.getHeight()) );     
+    registerPosition( mCurrPos );
 };
 
 template<>
 void DrawItemT<FitzImage>::setPosition( Vec2f position )
 {
-    registerPosition( position );
+    mCairoContext.translate( position - mCurrPos );
     
-    mCairoContext.translate( position );
+    mOBB.moveTo( position );
+    
+    registerPosition( mCurrPos );
 };
 
 template<>
@@ -75,7 +87,7 @@ void DrawItemT<FitzText>::draw()
 template<>
 void DrawItemT<FitzImage>::draw()
 {
-    cairo::SurfaceImage buf = cairo::SurfaceImage( mImage );
+    cairo::SurfaceImage buf = cairo::SurfaceImage( mImageSource );
     mCairoContext.setSourceSurface( buf, 0, 0 );    
     mCairoContext.paint();
     
@@ -105,6 +117,9 @@ DrawItemT<FitzText>::DrawItemT( const string text, const Font font ) :
     mCairoContext.setFont( mFont );
     mCairoContext.setAntiAlias( cairo::ANTIALIAS_SUBPIXEL );
     mCairoContext.setSource( mColor );
+    
+    cairo::TextExtents te = mCairoContext.textExtents( mText );    
+    mOBB = OBB( Rectf( 0.0, 0.0, te.width(), te.height() ), 0.0f );
 };
 
 template<>
@@ -113,7 +128,11 @@ DrawItemT<FitzImage>::DrawItemT( const string resource ) :
 {
     initCairoBuffer();
     
-    mImage = loadImage( loadAsset(mResource) );
+    mImageSource    = loadImage( loadAsset(mResource) );
+    mImageWidth     = mImageSource->getWidth();
+    mImageHeight    = mImageSource->getHeight();
+    
+    mOBB = OBB( Rectf( 0.0f, 0.0f, mImageWidth, mImageHeight ), 0.0f );
 };
 
 template<typename T>
@@ -157,6 +176,8 @@ void DrawItemT<T>::drawBoundingBox()
     
     gl::color( ColorA( 0.0f, 1.0f, 0.0f, 1.0f ));
     gl::draw( mOBB.getPath() );
+    gl::drawSolidCircle( mOBB.getCentroid(), 4.0f );
+    gl::drawSolidCircle( mOBB.getUL(), 2.0f );
     
     gl::disableAlphaBlending();    
 };

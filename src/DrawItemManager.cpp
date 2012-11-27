@@ -39,11 +39,13 @@ void DrawItemManager::setup()
     while( it != mDrawItems.end() ) {
         if ( DrawItemT<FitzText> *p = boost::get<DrawItemT<FitzText>>( &(*it) )) {
             p->setSize( Rand::randFloat(76)+17.0f );
-            p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
+//            p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
+            p->setPosition( Vec2f( Rand::randFloat(bW), 20.0f ));
         }
         else if ( DrawItemT<FitzImage> *p = boost::get<DrawItemT<FitzImage>>( &(*it) )) {
-            p->setSize( 256 );
-            p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
+            p->setSize( 256.0f );
+//            p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
+            p->setPosition( Vec2f( 10.0f, 20.0f ));
         }
         else {
         // Type not implemented.

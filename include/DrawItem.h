@@ -45,8 +45,7 @@ public:
     
 protected:
     // Common
-    cinder::Vec2f               mCurrPos;
-    cinder::Vec2f               mLastPos;
+    cinder::Vec2f               mCurrPos, mLastPos;
     cinder::ColorA              mColor;
     cinder::gl::Texture         mTexture;
     cinder::PolyLine2f          mPosPath;
@@ -61,7 +60,8 @@ private:
     
     // FitzImage
     std::string                 mResource;
-    cinder::ImageSourceRef      mImage;
+    cinder::ImageSourceRef      mImageSource;
+    float                       mImageHeight, mImageWidth;
     
     // Common
     void registerPosition( cinder::Vec2f position );

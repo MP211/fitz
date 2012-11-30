@@ -69,9 +69,19 @@ public:
         return mCorners[0];        
     };
     
+    cinder::Vec2f getUR() const
+    {
+        return mCorners[1];
+    };
+    
     cinder::Vec2f getLR() const
     {
         return mCorners[2];
+    };
+    
+    cinder::Vec2f getLL() const
+    {
+        return mCorners[3];
     };
     
     cinder::Vec2f getCentroid() const
@@ -134,6 +144,18 @@ public:
         moveTo( pos );
     };
     
+    void rotate( float angle )
+    {
+        cinder::Vec2f pos = mCorners[0];
+        moveTo( cinder::Vec2f::zero());
+        
+        mAngle = angle;
+        
+        orient( mWidth, mHeight, mAngle );
+        
+        moveTo( pos );        
+    };
+    
     friend std::ostream& operator<<( std::ostream &o, const OBB &box )
     {
         return o << "(" << box.getX1() << ", " << box.getY1() << ")-(" << box.getX2() << ", " << box.getY2() << ")";
@@ -142,8 +164,8 @@ public:
 private:
     void orient( float w, float h, float angle )
     {
-        cinder::Vec2f X( cos(angle), sin(angle) );
-        cinder::Vec2f Y( -sin(angle), cos(angle) );
+        cinder::Vec2f X( cosf(angle), sinf(angle) );
+        cinder::Vec2f Y( -sinf(angle), cosf(angle) );
         
         X *= w / 2.0f;
         Y *= h / 2.0f;

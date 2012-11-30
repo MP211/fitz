@@ -21,11 +21,8 @@ template<>
 void DrawItemT<FitzText>::setSize( float size )
 {
     cairo::TextExtents te1 = mCairoContext.textExtents( mText );
-    
     mCairoContext.setFontSize( size );
-    
-    cairo::TextExtents te2 = mCairoContext.textExtents( mText );
-    
+    cairo::TextExtents te2 = mCairoContext.textExtents( mText );    
     mOBB.scale( te2.width()/te1.width(), te2.height()/te1.height() );
 };
 
@@ -44,29 +41,40 @@ void DrawItemT<FitzImage>::setSize( float size )
 
 template<>
 void DrawItemT<FitzText>::setPosition( Vec2f position )
-{
-    // Offset for upper-left positioning for parity with images
-    mCairoContext.moveTo( position + Vec2f( 0.0f, mOBB.getHeight()) );
-    
+{    
     mOBB.moveTo( position );
     
-    registerPosition( mCurrPos );
+    // Offset position by text height distance toward lower-left OBB point;
+    // we'll keep things relative to upper-left, for parity throughout:
+    cairo::TextExtents te( mCairoContext.textExtents( mText ) );
+    Vec2f dir( mOBB.getLL() - mOBB.getUL() );
+    dir.normalize();
+    Vec2d pos( position + ( dir * te.height()) );
+    mCairoContext.deviceToUser( &pos.x, &pos.y );
+    mCairoContext.moveTo( pos );
+    
+    registerPosition( position );    
 };
 
 template<>
 void DrawItemT<FitzImage>::setPosition( Vec2f position )
 {
-    mCairoContext.translate( position - mCurrPos );
+    Vec2d offset( position - mCurrPos );
+    mCairoContext.deviceToUserDistance( &offset.x, &offset.y );
+    mCairoContext.translate( offset );
     
     mOBB.moveTo( position );
     
-    registerPosition( mCurrPos );
+    registerPosition( position );
 };
 
 template<>
 void DrawItemT<FitzText>::draw()
 {
     mCairoContext.textPath( mText );
+    mCairoContext.fill();
+    cairo::PatternSurface buf = cairo::PatternSurface();
+    mCairoContext.setSource( buf );
     
     copyCairoBuffer();
     
@@ -77,7 +85,7 @@ void DrawItemT<FitzText>::draw()
     gl::draw( mTexture );
     
     gl::disableAlphaBlending();
-    
+        
 #ifdef DEBUG
     drawBoundingBox();
 #endif
@@ -87,7 +95,7 @@ template<>
 void DrawItemT<FitzImage>::draw()
 {
     cairo::SurfaceImage buf = cairo::SurfaceImage( mImageSource );
-    mCairoContext.setSourceSurface( buf, 0, 0 );    
+    mCairoContext.setSourceSurface( buf, 0, 0 );
     mCairoContext.paint();
     
     copyCairoBuffer();
@@ -97,7 +105,7 @@ void DrawItemT<FitzImage>::draw()
     
     gl::color( ColorA::gray(1.0f) );
     gl::draw( mTexture );
-    
+
     gl::disableAlphaBlending();
     
 #ifdef DEBUG
@@ -134,18 +142,13 @@ DrawItemT<FitzImage>::DrawItemT( const string resource ) :
     mOBB = OBB( Rectf( 0.0f, 0.0f, mImageWidth, mImageHeight ), 0.0f );
 };
 
+// ---
+// ---
+// ---
+
 template<typename T>
 void DrawItemT<T>::update()
 {
-};
-
-template<typename T>
-void DrawItemT<T>::registerPosition( Vec2f position )
-{
-    mLastPos = mCurrPos;
-    mCurrPos = position;
-    
-    mPosPath.push_back( mLastPos );
 };
 
 template<typename T>
@@ -157,13 +160,34 @@ void DrawItemT<T>::initCairoBuffer()
 
 template<typename T>
 void DrawItemT<T>::copyCairoBuffer()
-{
+{    
     cairo::SurfaceImage buf( getWindowWidth(), getWindowHeight(), true );
     cairo::Context      ctx( buf );
     
     ctx.copySurface( mCairoBuffer, mCairoBuffer.getBounds() );
     mTexture = gl::Texture( buf.getSurface() );
-    mCairoContext.fill();
+};
+
+template<typename T>
+void DrawItemT<T>::setRotation( float angle )
+{
+    Vec2d origin( mCurrPos.x, mCurrPos.y );
+    mCairoContext.deviceToUserDistance( &origin.x, &origin.y );
+    
+    mCairoContext.translate( origin );
+    mCairoContext.rotate( angle );
+    mCairoContext.translate( -origin );
+    
+    mOBB.rotate( angle );
+};
+
+template<typename T>
+void DrawItemT<T>::registerPosition( Vec2f position )
+{
+    mLastPos = mCurrPos;
+    mCurrPos = position;
+    
+    mPosPath.push_back( mLastPos );
 };
 
 #ifdef DEBUG

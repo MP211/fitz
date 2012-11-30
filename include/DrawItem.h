@@ -40,8 +40,9 @@ public:
     // Common
     void update();
     void draw();
-    void setPosition( cinder::Vec2f position );
     void setSize( float size );
+    void setPosition( cinder::Vec2f position );
+    void setRotation( float angle );
     
 protected:
     // Common
@@ -54,9 +55,6 @@ private:
     // FitzText
     cinder::Font                mFont;
     std::string                 mText;
-    cinder::cairo::SurfaceImage mCairoBuffer;
-    cinder::cairo::Context      mCairoContext;
-    OBB                         mOBB;
     
     // FitzImage
     std::string                 mResource;
@@ -64,6 +62,10 @@ private:
     float                       mImageHeight, mImageWidth;
     
     // Common
+    cinder::cairo::SurfaceImage mCairoBuffer;
+    cinder::cairo::Context      mCairoContext;
+    OBB                         mOBB;
+    
     void registerPosition( cinder::Vec2f position );
     void initCairoBuffer();
     void copyCairoBuffer();

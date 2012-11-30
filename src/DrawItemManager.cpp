@@ -37,19 +37,21 @@ void DrawItemManager::setup()
     list<DrawItemType>::iterator it = mDrawItems.begin();
     
     while( it != mDrawItems.end() ) {
+    // Scale, Rotation, Translation:
+    
         if ( DrawItemT<FitzText> *p = boost::get<DrawItemT<FitzText>>( &(*it) )) {
-        // SRT
             p->setSize( Rand::randFloat(76)+17.0f );
+            p->setRotation( Rand::randFloat(180.0f) * pi / 180.0f );
             p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
         }
         else if ( DrawItemT<FitzImage> *p = boost::get<DrawItemT<FitzImage>>( &(*it) )) {
-        // TSR
-            p->setPosition( Vec2f( Rand::randFloat(bW), Rand::randFloat(bH) ));
             p->setSize( 256.0f );
+            p->setRotation( Rand::randFloat(180.0f) * pi / 180.0f );
+            p->setPosition( Vec2f( Rand::randFloat(500.0f), Rand::randFloat(500.0f) ));
         }
         else {
         // Type not implemented.
-        }
+        }   
     
         ++it;
     }
